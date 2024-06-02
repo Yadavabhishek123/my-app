@@ -1,0 +1,42 @@
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import React, { Suspense } from "react";
+import Landing from "./React-Router-Dom/Landing";
+const Dashboard = React.lazy(() =>  import("./React-Router-Dom/Dashboard"));   // lazy loading concept
+// for using react.lazy always wrap our lazy component into suspense component with this fallback component
+
+function App() {
+
+  return (
+    <>
+      <BrowserRouter>
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/Dashboard" element={<Suspense  fallback={"loading...."}><Dashboard />
+          </Suspense>} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
+}
+
+function Navigation() {
+  const navigate = useNavigate(); // i am using this navigate hook into browser router with this navigation component 
+  function goDashboard() {
+    navigate("/Dashboard");
+  }
+
+  function goLanding() {
+    navigate("/")
+  }
+  return (
+    <div>
+      <button onClick={goDashboard}> Dashboard Page</button>
+      <button onClick={goLanding}> Landing Page</button>
+    </div>)
+}
+
+export default App;
+
+
+

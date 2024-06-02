@@ -1,0 +1,19 @@
+
+import React, {useState} from "react";
+import MyContext from "./ContextApi/context"
+import CountRender from "./ContextApi/CountRender"
+
+function App() {
+  const [Count, setCount] = useState(0);
+
+  return (
+    <>
+      <MyContext.Provider value = {{Count:Count, setCount}} >
+         <CountRender/>
+      </MyContext.Provider>
+    </>
+  );
+}
+
+export default App
+;
